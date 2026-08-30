@@ -50,7 +50,7 @@
     { city: "Nueva York", passengers: "Cristian & Dani", message: "." },
     { city: "Bangkok", passengers: "Jose, Der, Isa & Sebas", message: "." },
     { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "." },
-    { city: "Punta Cana", passengers: "Lapislázuli Flaca", message: "." }
+    { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "." }
   ];
   const CITY_STORAGE_KEY = "invitacionCiudad";
 

@@ -1,5 +1,5 @@
 // Johan & Mónica — invitación de boda
-// Scroll-driven site logic (map animations, reveals, RSVP CTA, Thailand quote toggle).
+// Scroll-driven site logic (map animations, reveals, RSVP CTA).
 // Mobile-first, single scroll container (window).
 
 (() => {
@@ -9,7 +9,7 @@
   // Update this with the real WhatsApp number before sharing the invitation
   // (country code + number, digits only — e.g. "573001234567").
   const CONFIG = {
-    whatsappNumber: "573118420718",
+    whatsappNumber: "573245840166",
     whatsappMessage:
       "¡Hola Johan y Mónica! Confirmo mi asistencia a la boda del 21 y 22 de noviembre en La Vega 🌿",
     motionIntensity: 1, // 0.4 - 1.8
@@ -19,10 +19,122 @@
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
   const q = (s, root = document) => Array.from(root.querySelectorAll(s));
 
+  // ---- Guest groups ---------------------------------------------------
+  // Each family/guest group gets one city assigned privately (tell them
+  // which one when you invite them). Typing that city on the gate screen
+  // personalizes the boarding pass name, the closing message and the
+  // WhatsApp confirmation text.
+  //
+  // PLACEHOLDER DATA: these 20 cities and names are random examples —
+  // replace "city", "passengers" and "message" below with your real
+  // guest list before sharing the invitation.
+
+  const GUEST_GROUPS = [
+    { city: "Xian", passengers: "Nicolas Camilo", message: "." },
+    { city: "Miami", passengers: "Patricia & Guillermo", message: "." },
+    { city: "Madrid", passengers: "Margarita", message: "." },
+    { city: "Dubai", passengers: "Nefta & Paula", message: "." },
+    { city: "Budapest", passengers: "Arely y Nixon", message: "." },
+    { city: "Cracovia", passengers: "Aleja & Alejo", message: "." },
+    { city: "Praga", passengers: "Andre", message: "." },
+    { city: "Vergara", passengers: "Angélica & Beto", message: "." },
+    { city: "Oslo", passengers: "Otilia & Jairo", message: "." },
+    { city: "Estocolmo", passengers: "Thomas Steve", message: "." },
+    { city: "Beijing", passengers: "Primo!", message: "." },
+    { city: "Viena", passengers: "Carlos, Lore & Noah", message: "." },
+    { city: "Chicago", passengers: "Ana", message: "." },
+    { city: "Santo Domingo", passengers: "Sebas & Angie", message: "." },
+    { city: "Shanghai", passengers: "Sebas & Angélica", message: "." },
+    { city: "Cusco", passengers: "Juni & Nata", message: "." },
+    { city: "Ubud", passengers: "Jose & Francy", message: "." },
+    { city: "Nueva York", passengers: "Cristian & Dani", message: "." },
+    { city: "Bangkok", passengers: "Jose, Der, Isa & Sebas", message: "." },
+    { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "." },
+    { city: "Punta Cana", passengers: "Lapislázuli Flaca", message: "." }
+  ];
+  const CITY_STORAGE_KEY = "invitacionCiudad";
+
+  const DIACRITICS_RE = new RegExp("[̀-ͯ]", "g");
+
+  function normalizeCity(s) {
+    return (s || "")
+      .toString()
+      .normalize("NFD")
+      .replace(DIACRITICS_RE, "")
+      .trim()
+      .toLowerCase();
+  }
+
+  function findGuestGroup(cityInput) {
+    const n = normalizeCity(cityInput);
+    if (!n) return null;
+    return GUEST_GROUPS.find((g) => normalizeCity(g.city) === n) || null;
+  }
+
+  function applyGuestGroup(group) {
+    if (!group) return;
+    const nameEl = document.getElementById("passengerNames");
+    if (nameEl) nameEl.textContent = group.passengers;
+    const msgEl = document.getElementById("personalMessage");
+    if (msgEl) msgEl.textContent = group.message || "";
+    CONFIG.whatsappMessage =
+      "¡Hola Johan y Mónica! Somos " +
+      group.passengers +
+      ". ¡Check-in confirmado! Modo turista listo para recorrer todo el lugar y disfrutar con ustedes este momento tan especial. Me podré llevar el centro de mesa de recuerdo?";
+    setupCtaLink();
+  }
+
+  // Wires the gate form; returns an already-validated group when the guest's
+  // city was remembered from a previous visit (gate is hidden immediately),
+  // or null when the gate is left showing and waiting for input.
+  function setupCityGate() {
+    const gate = document.getElementById("cityGate");
+    const form = document.getElementById("cityGateForm");
+    const input = document.getElementById("cityGateInput");
+    const error = document.getElementById("cityGateError");
+    if (!gate || !form || !input) return null;
+
+    let saved = null;
+    try {
+      saved = localStorage.getItem(CITY_STORAGE_KEY);
+    } catch (e) {}
+    if (saved) {
+      const group = findGuestGroup(saved);
+      if (group) {
+        gate.style.display = "none";
+        return group;
+      }
+      try {
+        localStorage.removeItem(CITY_STORAGE_KEY);
+      } catch (e) {}
+    }
+
+    gate.style.display = "flex";
+    document.body.style.overflow = "hidden";
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const group = findGuestGroup(input.value);
+      if (!group) {
+        if (error) error.hidden = false;
+        input.focus();
+        return;
+      }
+      if (error) error.hidden = true;
+      try {
+        localStorage.setItem(CITY_STORAGE_KEY, group.city);
+      } catch (e) {}
+      applyGuestGroup(group);
+      gate.style.display = "none";
+      document.body.style.overflow = "";
+    });
+
+    return null;
+  }
+
   const site = {
     mi: CONFIG.motionIntensity,
-    sc: window,
-    thaiOpen: false
+    sc: window
   };
 
   function viewH() {
@@ -55,22 +167,6 @@
     };
   }
 
-  // ---- Thailand quote toggle ------------------------------------------
-  function setupThaiToggle() {
-    const btn = document.getElementById("thaiToggle");
-    const label = document.getElementById("thaiToggleLabel");
-    const content = document.getElementById("thaiContent");
-    if (!btn || !label || !content) return;
-
-    btn.addEventListener("click", () => {
-      site.thaiOpen = !site.thaiOpen;
-      btn.setAttribute("aria-expanded", String(site.thaiOpen));
-      label.textContent = site.thaiOpen ? "Cerrar" : "Toca para leer";
-      content.style.maxHeight = site.thaiOpen ? "220px" : "0px";
-      content.style.opacity = site.thaiOpen ? "1" : "0";
-    });
-  }
-
   // ---- RSVP CTA link ----------------------------------------------------
   function setupCtaLink() {
     const link = document.getElementById("ctaLink");
@@ -78,6 +174,28 @@
     const num = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
     const msg = encodeURIComponent(CONFIG.whatsappMessage);
     link.href = "https://wa.me/" + num + "?text=" + msg;
+  }
+
+  // ---- Details carousel dots --------------------------------------------
+  function setupDetailsCarousel() {
+    const carousel = document.querySelector("[data-carousel]");
+    const dots = q("[data-carousel-dot]");
+    if (!carousel || !dots.length) return;
+    const count = carousel.children.length;
+
+    function update() {
+      const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+      const progress = maxScroll > 0 ? clamp(carousel.scrollLeft / maxScroll, 0, 1) : 0;
+      const active = Math.round(progress * (count - 1));
+      dots.forEach((dot, i) => {
+        const on = i === active;
+        dot.style.background = on ? "#f3f0e7" : "#7c9375";
+        dot.style.transform = on ? "scale(1.6)" : "scale(1)";
+      });
+    }
+
+    carousel.addEventListener("scroll", update, { passive: true });
+    update();
   }
 
   // ---- Deep-linking (?at=beat or #beat) --------------------------------
@@ -95,7 +213,7 @@
       transformed: ["transform", 0.95],
       moto: ["nat", 0.08],
       laslajas: ["nat", 0.79],
-      lavega: ["nat", 0.97],
+      frontera: ["nat", 0.97],
       bridge: ["bridge", 0],
       reveal: ["reveal", 0.8],
       details: ["details", 0],
@@ -171,7 +289,8 @@
       }
       s.prog.style.strokeDasharray = String(len);
       s.prog.style.strokeDashoffset = String(len * (1 - eased));
-      const alpha = local < 0.18 ? local / 0.18 : local > 0.84 ? (1 - local) / 0.16 : 1;
+      const isLastStop = i === n - 1;
+      const alpha = local < 0.18 ? local / 0.18 : local > 0.84 && !isLastStop ? (1 - local) / 0.16 : 1;
       s.stops.forEach((el, k) => {
         const on = k === i;
         el.style.opacity = on ? cl(alpha, 0, 1).toFixed(2) : "0";
@@ -268,8 +387,13 @@
 
   // ---- Boot ---------------------------------------------------------------
   function init() {
-    setupThaiToggle();
-    setupCtaLink();
+    const initialGroup = setupCityGate();
+    if (initialGroup) {
+      applyGuestGroup(initialGroup);
+    } else {
+      setupCtaLink();
+    }
+    setupDetailsCarousel();
 
     // find the real scroll container (window, or a scrolling ancestor)
     site.sc = window;

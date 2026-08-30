@@ -17,11 +17,68 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/style.css" />
+<style>.mobile-gate{display:none}</style>
+<link rel="stylesheet" href="assets/css/style.css?v=3" />
 </head>
 <body>
+<div class="mobile-gate">
+  <svg width="72" height="54" viewBox="0 0 120 90" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g fill="#f1dedb" stroke="#c4a09b" stroke-width="1.9">
+      <path d="M60,72 C36,70 14,60 6,44 C28,40 50,54 60,72 Z"></path>
+      <path d="M60,72 C84,70 106,60 114,44 C92,40 70,54 60,72 Z"></path>
+    </g>
+    <g fill="#f6e7e4" stroke="#c4a09b" stroke-width="1.9">
+      <path d="M60,72 C44,62 32,44 30,24 C48,34 58,54 60,72 Z"></path>
+      <path d="M60,72 C76,62 88,44 90,24 C72,34 62,54 60,72 Z"></path>
+    </g>
+    <path d="M60,72 C49,54 51,26 60,10 C69,26 71,54 60,72 Z" fill="#fbf3f1" stroke="#c4a09b" stroke-width="1.9"></path>
+  </svg>
+  <p class="mobile-gate-kicker">Celebramos el amor</p>
+  <h1 class="mobile-gate-title">Johan <span>&amp;</span> Mónica</h1>
+  <div class="mobile-gate-divider">
+    <span></span>
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8,1 L8,15 M2,8 L14,8" stroke="#c9a6a1" stroke-width="1.2" stroke-linecap="round"></path></svg>
+    <span></span>
+  </div>
+  <p class="mobile-gate-message">Esta invitación está pensada para vivirse desde tu celular.<br />Ábrela desde tu teléfono para ver toda la experiencia.</p>
+</div>
 <div class="site-frame">
 
+<div id="cityGate" class="city-gate" role="dialog" aria-modal="true" aria-label="Verifica tu ciudad">
+  <svg width="72" height="54" viewBox="0 0 120 90" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <g fill="#f1dedb" stroke="#c4a09b" stroke-width="1.9">
+      <path d="M60,72 C36,70 14,60 6,44 C28,40 50,54 60,72 Z"></path>
+      <path d="M60,72 C84,70 106,60 114,44 C92,40 70,54 60,72 Z"></path>
+    </g>
+    <g fill="#f6e7e4" stroke="#c4a09b" stroke-width="1.9">
+      <path d="M60,72 C44,62 32,44 30,24 C48,34 58,54 60,72 Z"></path>
+      <path d="M60,72 C76,62 88,44 90,24 C72,34 62,54 60,72 Z"></path>
+    </g>
+    <path d="M60,72 C49,54 51,26 60,10 C69,26 71,54 60,72 Z" fill="#fbf3f1" stroke="#c4a09b" stroke-width="1.9"></path>
+  </svg>
+  <p class="city-gate-kicker">Antes de comenzar</p>
+  <h1 class="city-gate-title">¿Desde qué ciudad<br />nos acompañas?</h1>
+  <div class="mobile-gate-divider">
+    <span></span>
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8,1 L8,15 M2,8 L14,8" stroke="#c9a6a1" stroke-width="1.2" stroke-linecap="round"></path></svg>
+    <span></span>
+  </div>
+  <p class="city-gate-message">Escribe el nombre de la ciudad que te asignamos para abrir tu invitación.</p>
+  <form id="cityGateForm" class="city-gate-form" autocomplete="off">
+    <input id="cityGateInput" type="text" inputmode="text" placeholder="Ej: Medellín" class="city-gate-input" />
+    <button type="submit" class="city-gate-button">Ingresar</button>
+  </form>
+  <p id="cityGateError" class="city-gate-error" hidden>No encontramos esa ciudad. Verifica cómo la escribiste.</p>
+</div>
+<script>
+(function () {
+  try {
+    if (localStorage.getItem("invitacionCiudad")) {
+      document.currentScript.previousElementSibling.style.display = "none";
+    }
+  } catch (e) {}
+})();
+</script>
 
 <div class="site-card">
 
@@ -36,7 +93,7 @@
     </div>
   </div>
 
-  <section id="opening" data-label="Opening" data-screen-label="01 Opening" style="position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;overflow:hidden">
+  <section id="opening" data-label="Opening" data-screen-label="01 Opening" style="position:relative;height:100vh;height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 34px;overflow:hidden">
     <div class="opening-aurora-mask" aria-hidden="true">
       <div class="opening-aurora"></div>
     </div>
@@ -77,7 +134,7 @@
       </g>
     </svg>
 
-    <p data-reveal="" style="margin:0 0 26px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#9c9483">Nos casamos</p>
+    <p data-reveal="" style="margin:0 0 26px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#9c9483">Celebramos el amors</p>
     <h1 data-reveal="" data-delay="120" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:58px;line-height:1.02;text-align:center;letter-spacing:.01em">Johan<br /><span style="font-style:italic;font-size:34px;color:#a8b795">&amp;</span><br />Mónica</h1>
     <div data-reveal="" data-delay="240" style="display:flex;align-items:center;gap:12px;margin-top:30px">
       <span style="width:34px;height:1px;background:#d9cfbe"></span>
@@ -85,7 +142,7 @@
       <span style="width:34px;height:1px;background:#d9cfbe"></span>
     </div>
     <p data-reveal="" data-delay="320" style="margin:8px 0 0;font-size:12px;letter-spacing:.12em;color:#9c9483">La Vega, Cundinamarca</p>
-    <div data-reveal="" data-delay="460" style="position:absolute;bottom:44px;display:flex;flex-direction:column;align-items:center;gap:10px">
+    <div data-reveal="" data-delay="460" style="position:absolute;bottom:72px;display:flex;flex-direction:column;align-items:center;gap:10px">
       <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#9c9483">Baja para comenzar!</span>
       <svg width="16" height="26" viewBox="0 0 16 26" fill="none" style="animation:bob 2.4s ease-in-out infinite">
         <path d="M8,1 L8,21 M2,15 L8,22 L14,15" stroke="#a8b795" stroke-width="2" stroke-linecap="round"></path>
@@ -116,17 +173,17 @@
       </g>
     </svg>
     <p data-reveal="" style="margin:0 0 18px;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#9c9483">Donde todo empezó</p>
-    <h2 data-reveal="" data-delay="80" style="margin:0 0 22px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1.1">Bogotá</h2>
+    <h2 data-reveal="" data-delay="80" style="margin:0 0 22px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1.1">U. Distrital</h2>
 
     <div data-reveal="" data-delay="160" style="align-self:center;width:250px;height:300px;margin:6px 0 26px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;overflow:hidden">
       <img src="assets/img/youth.png" alt="Johan & Mónica, jóvenes en Bogotá" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
 
-    <p data-reveal="" data-delay="240" style="margin:0;font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.5;font-style:italic;color:#41493f;text-wrap:pretty">Nos conocimos a 2.600 metros más cerca de las estrellas — y desde ese día no dejamos de movernos.</p>
+    <p data-reveal="" data-delay="240" style="margin:0;font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.5;font-style:italic;color:#41493f;text-wrap:pretty">Dios nos encontró y nuestros corazones decidieron amar desde la realidad del presente y sin temor a la incertidumbre del mañana.</p>
   </section>
 
   <section id="intl" data-label="Ruta internacional" data-screen-label="03 International leg" data-stage="intl" data-count="7" style="position:relative;height:640vh">
-    <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div style="position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden">
       <svg viewBox="0 0 320 430" preserveAspectRatio="xMidYMid meet" style="position:absolute;top:0;left:0;width:100%;height:62%" fill="none">
         <g data-route-shift="" data-win="430" data-total="980">
         <path d="M70,70 C70,140 250,140 250,210 C250,280 80,280 80,350 C80,420 245,420 245,490 C245,560 85,560 85,630 C85,700 250,700 250,770 C250,840 110,840 110,910" stroke="#e0d6c4" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 9"></path>
@@ -170,122 +227,128 @@
       <img src="assets/img/Inter.jpeg" alt="Bogotá, primer viaje" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
           <p style="margin:0 0 4px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#a8b795">Salida</p>
-          <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Bogotá</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Un tiquete, dos maletas y ninguna idea de a dónde nos llevaría esto.</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="24" cy="8" r="2.4" fill="#dbe5cf" stroke="#8fa681" stroke-width="1.4"></circle>
+              <path d="M4 25 L13 10 L18 18 L23 9 L29 25 Z" fill="#e6eeda" stroke="#8fa681" stroke-width="1.6" stroke-linejoin="round"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Bogotá</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Nuestra relación inició como una metáfora. Un atlas que sin saberlo se iba trazando a cuatro manos bajo un mismo norte.</p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
       <img src="assets/img/CUN.jpg" alt="Cancún, primer mar juntos" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#f6e9e6;border:1px solid #e6cdc9">
-            <svg width="26" height="19" viewBox="0 0 120 82" fill="#dfbdb7" stroke="#b08d88" stroke-width="2.6" stroke-linejoin="round"><path d="M60,72 C36,70 14,60 6,44 C28,40 50,54 60,72 Z"></path><path d="M60,72 C84,70 106,60 114,44 C92,40 70,54 60,72 Z"></path><path d="M60,72 C44,62 32,44 30,24 C48,34 58,54 60,72 Z"></path><path d="M60,72 C76,62 88,44 90,24 C72,34 62,54 60,72 Z"></path><path d="M60,72 C49,54 51,26 60,10 C69,26 71,54 60,72 Z" fill="#f0d8d3"></path></svg>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">Cancún</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a98d88">primer mar juntos</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 29 C16 22 15 18 17 14" stroke="#b08d88" stroke-width="1.8" stroke-linecap="round"></path>
+              <path d="M17 14 C12 12 9 8 8 4 C13 5 17 8 18 12" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.4" stroke-linejoin="round"></path>
+              <path d="M17 14 C22 12 26 9 28 5 C23 5 19 8 17 12" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.4" stroke-linejoin="round"></path>
+              <path d="M17 13 C15 9 15 5 17 2 C19 6 19 10 17 13" fill="#f6e7e4" stroke="#b08d88" stroke-width="1.4" stroke-linejoin="round"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Cancún</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">La historia nos iba guiando mientras entre momentos y abrazos escribíamos lo que sería la primer memoria de nuestros pasos intrépidos.</p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden">
       <img src="assets/img/THAI.jpg" alt="templos, Tailandia" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:6px">
-            <svg width="34" height="34" viewBox="0 0 120 120" fill="none" stroke="#8fa681" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M60,3 L60,15" stroke-width="1.8"></path><circle cx="60" cy="8" r="2.4" fill="#dbe5cf"></circle>
-              <path d="M24,34 C34,20 86,20 96,34 C88,32 32,32 24,34 Z" fill="#e6eeda"></path>
-              <path d="M16,58 C30,42 90,42 104,58 C92,56 28,56 16,58 Z" fill="#e6eeda"></path>
-              <path d="M10,84 C28,66 92,66 110,84 C96,82 24,82 10,84 Z" fill="#e6eeda"></path>
-              <path d="M24,34 C20,29 22,24 27,24 M96,34 C100,29 98,24 93,24 M16,58 C12,52 14,47 20,47 M104,58 C108,52 106,47 100,47 M10,84 C6,78 8,72 15,72 M110,84 C114,78 112,72 105,72" stroke-width="1.5"></path>
-              <path d="M42,34 L42,48 M78,34 L78,48 M36,58 L36,72 M84,58 L84,72" stroke-width="1.5"></path>
-              <path d="M30,84 L30,104 M90,84 L90,104 M20,104 H100 M15,111 H105"></path>
-              <path d="M52,104 L52,90 C55,83 65,83 68,90 L68,104" stroke-width="1.6"></path>
-              <path d="M60,36 L60,44" stroke-width="1.2"></path><circle cx="60" cy="47" r="3.2" fill="#f0d8d3" stroke="#c4a09b" stroke-width="1.2"></circle>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 V7" stroke="#8fa681" stroke-width="1.6"></path>
+              <circle cx="16" cy="3" r="1.6" fill="#dbe5cf" stroke="#8fa681" stroke-width="1.2"></circle>
+              <path d="M9 17 C11 10 21 10 23 17 C19 15 13 15 9 17 Z" fill="#e6eeda" stroke="#8fa681" stroke-width="1.4" stroke-linejoin="round"></path>
+              <path d="M5 26 C8 18 24 18 27 26 C20 23 12 23 5 26 Z" fill="#e6eeda" stroke="#8fa681" stroke-width="1.4" stroke-linejoin="round"></path>
             </svg>
-            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px">Tailandia</h3>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Tailandia</h3>
           </div>
-          <button id="thaiToggle" type="button" class="thai-toggle" aria-expanded="false" aria-controls="thaiContent" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid #c7d5b6;background:#eef2e6;color:#5f7d5b;font-family:Karla,sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer">
-            <span style="width:6px;height:6px;border-radius:50%;background:#7e9a76"></span><span id="thaiToggleLabel">Toca para leer</span>
-          </button>
-          <div id="thaiContent" style="max-height:0px;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1),opacity .4s ease;opacity:0">
-            <p style="margin:14px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.45;color:#41493f">“Aquí aprendimos a viajar despacio: un templo, un mango, una promesa.”</p>
-          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Sin más que nuestras manos entrelazadas y mochilas cargadas de sueños, nos atrevimos a explorar culturas totalmente diferentes a las nuestras... La armonía del mundo yace en el contraste de almas. </p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #cfdcc0;background:repeating-linear-gradient(135deg,#f2f5eb 0 8px,#e9efdf 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
       <img src="assets/img/IND.jpg" alt="Indonesia, islas y motos" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#eef2e6;border:1px solid #cfdcc0">
-            <svg width="34" height="27" viewBox="4 20 140 100" fill="none" stroke="#7f9074" stroke-width="3.2" stroke-linejoin="round">
-              <path d="M34,70 h13 c1,14 1,26 0,38 c0,4 -13,4 -13,0 c-1,-12 -1,-24 0,-38 z" fill="#cfdcc0"></path>
-              <path d="M94,72 h13 c2,14 2,26 1,38 c0,4 -13,4 -13,0 c-1,-12 -1,-24 -1,-38 z" fill="#cfdcc0"></path>
-              <path d="M17,60 C11,70 11,82 14,92" fill="none" stroke-width="2.6"></path>
-              <path d="M18,72 h15 c2,14 1,28 0,40 c0,5 -15,5 -15,0 c-1,-12 -1,-26 0,-40 z" fill="#dbe5cf"></path>
-              <path d="M78,74 h15 c2,14 2,28 1,40 c0,5 -15,5 -15,0 c-1,-12 -1,-26 -1,-40 z" fill="#dbe5cf"></path>
-              <path d="M16,64 C10,44 22,28 44,26 C58,25 70,28 80,34 C92,40 100,50 102,62 C104,74 98,84 84,84 L34,84 C22,84 18,76 16,64 Z" fill="#dbe5cf"></path>
-              <path d="M96,34 C112,28 130,36 132,54 C133,66 128,76 120,80 C112,84 104,80 100,72 C96,62 94,44 96,34 Z" fill="#dbe5cf"></path>
-              <path d="M122,72 C134,82 138,98 131,110 C127,117 116,118 113,111 C111,105 117,101 120,105 C123,99 121,88 112,80 Z" fill="#e6eeda"></path>
-              <path d="M92,36 C106,30 119,38 119,54 C119,68 109,77 99,75 C92,73 90,60 90,50 Z" fill="#cfdcc0"></path>
-              <circle cx="122" cy="58" r="3" fill="#5c6b53" stroke="none"></circle>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="9" cy="25" r="3.4" stroke="#7f9074" stroke-width="1.8" fill="#dbe5cf"></circle>
+              <circle cx="24" cy="25" r="3.4" stroke="#7f9074" stroke-width="1.8" fill="#dbe5cf"></circle>
+              <path d="M9 25 H15 L19 15 H25 M15 25 H21 M19 15 L23 11" stroke="#7f9074" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">Indonesia</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a9a80">islas &amp; motos</span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Indonesia</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">La religión no tiene más verdad que descubrirnos sonriendo al otro con el corazón, mientras aprendemos a amarnos desde la raíz.</p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
       <img src="assets/img/CHI.jpg" alt="China, té de las 6 a.m." loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#f6e9e6;border:1px solid #e6cdc9">
-            <svg width="26" height="26" viewBox="0 0 120 120" fill="none" stroke="#b08d88" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M60,4 L60,16" stroke-width="2.2"></path><circle cx="60" cy="9" r="2.6" fill="#dfbdb7"></circle>
-              <path d="M24,34 C34,20 86,20 96,34 C88,32 32,32 24,34 Z" fill="#efd8d3"></path>
-              <path d="M16,58 C30,42 90,42 104,58 C92,56 28,56 16,58 Z" fill="#efd8d3"></path>
-              <path d="M10,84 C28,66 92,66 110,84 C96,82 24,82 10,84 Z" fill="#efd8d3"></path>
-              <path d="M24,34 C20,29 22,25 27,25 M96,34 C100,29 98,25 93,25 M16,58 C12,52 14,48 20,48 M104,58 C108,52 106,48 100,48 M10,84 C6,78 8,73 15,73 M110,84 C114,78 112,73 105,73" stroke-width="1.8"></path>
-              <path d="M42,34 L42,48 M78,34 L78,48 M36,58 L36,72 M84,58 L84,72" stroke-width="1.8"></path>
-              <path d="M30,84 L30,104 M90,84 L90,104 M20,104 H100 M16,111 H104"></path>
-              <path d="M52,104 L52,90 C55,84 65,84 68,90 L68,104" stroke-width="1.8"></path>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 4 V7" stroke="#b08d88" stroke-width="1.6"></path>
+              <path d="M11 10 H21" stroke="#b08d88" stroke-width="1.6"></path>
+              <path d="M11 10 C7 15 7 21 11 25 C13 27 19 27 21 25 C25 21 25 15 21 10 Z" fill="#efd8d3" stroke="#b08d88" stroke-width="1.6" stroke-linejoin="round"></path>
+              <path d="M11 25 H21" stroke="#b08d88" stroke-width="1.6"></path>
+              <path d="M16 27 V30" stroke="#b08d88" stroke-width="1.6"></path>
             </svg>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">China</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a98d88">té de las 6 a.m.</span>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">China</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Allí descubrimos que el lenguaje es un canal, sin embargo, son los actos, las miradas y el estado más básico que tenemos (el asombro) los que nos llevan a ser capaces de conectar con las realidades del otro.</p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden">
       <img src="assets/img/Tromp.jpg" alt="aurora, Tromsø" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px">Tromsø</h3>
-          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.45;color:#41493f">“−14 °C y aun así fue la noche más cálida del viaje.”</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M8 4 C13 10 5 16 11 22 C15 27 9 29 8 30" stroke="#8fa681" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M18 3 C23 9 15 15 21 21 C25 26 19 29 18 30" stroke="#a8b795" stroke-width="1.6" stroke-linecap="round"></path>
+              <circle cx="27" cy="7" r="1.2" fill="#dbe5cf"></circle>
+              <circle cx="24" cy="13" r="0.9" fill="#dbe5cf"></circle>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px">Tromsø</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">La sincronía de dos seres que se eligen entre sí, fue celebrada por la magía de la naturaleza y la simpleza de una palabra... ACEPTO!</p>
         </div>
 
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:190px;height:290px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;overflow:hidden">
       <img src="assets/img/PAR.png" alt="pareja, París" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <h3 style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px">París</h3>
-          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.45;color:#41493f">“La última escala del avión. Lo que venía después iba por tierra.”</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 L9 27 M16 3 L23 27" stroke="#8fa681" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M12 15 H20 M10.5 21 H21.5 M7 27 H25" stroke="#8fa681" stroke-width="1.4" stroke-linecap="round"></path>
+              <path d="M16 3 V1" stroke="#8fa681" stroke-width="1.4"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:32px">París</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Sin importar desde la latitud en que nos despierta el sol y nos cobija la luna, la vida nos encuentra como complices de nuestro amor.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section id="transform" data-label="Transformación" data-screen-label="04 Transformation" style="position:relative;height:300vh">
-    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
+    <div style="position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">
       <div data-tf-bg="" style="position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 40%,#f2f4ea 0%,#fbf7f0 60%);opacity:0"></div>
       <p data-tf-kicker="" style="position:relative;margin:0;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#9c9483">El avión aterriza</p>
       <div style="position:relative;width:320px;height:210px">
         <div data-tf-pass="" style="position:absolute;left:34px;right:34px;top:26px;display:flex;border-radius:10px;background:#fbf7f0;border:1.5px solid #e0d6c4;box-shadow:0 10px 22px rgba(47,58,51,.08);overflow:hidden">
           <div style="flex:1;padding:16px 16px 14px">
             <p style="margin:0 0 10px;font-family:ui-monospace,Menlo,monospace;font-size:9px;letter-spacing:.18em;color:#a39b8b">BOARDING PASS · 07</p>
-            <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1">BOG <span style="color:#c9a6a1">→</span> CDG</p>
-            <p style="margin:8px 0 0;font-family:ui-monospace,Menlo,monospace;font-size:9px;letter-spacing:.14em;color:#a39b8b">ÚLTIMO VUELO DEL VIAJE</p>
+            <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1">CDG <span style="color:#c9a6a1">→</span> BOG</p>
+            <p style="margin:8px 0 0;font-family:ui-monospace,Menlo,monospace;font-size:9px;letter-spacing:.14em;color:#a39b8b">LUGARES INFINITOS POR DESCUBRIR</p>
           </div>
           <div style="width:1.5px;background:repeating-linear-gradient(#e0d6c4 0 5px,transparent 5px 10px)"></div>
           <div style="width:62px;display:flex;align-items:center;justify-content:center;background:#f6e9e6">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#b99b96">21A</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:22px;color:#b99b96">29A</span>
           </div>
         </div>
         <svg data-tf-road="" viewBox="0 0 320 30" style="position:absolute;left:0;right:0;bottom:6px;width:100%;height:30px" fill="none">
@@ -352,12 +415,12 @@
           <path d="M70,6 A64,64 0 0 1 128,54" fill="none" stroke="#8e9487" stroke-width="2.4" opacity=".22" stroke-linecap="round"></path>
         </svg>
       </div>
-      <p data-tf-line="" style="position:relative;margin:0;max-width:290px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;line-height:1.4;color:#41493f;opacity:0">Lo que faltaba del mundo lo hicimos en dos ruedas.</p>
+      <p data-tf-line="" style="position:relative;margin:0;max-width:290px;text-align:center;font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;line-height:1.4;color:#41493f;opacity:0">Para descubrir las maravillas de nuestro país.</p>
     </div>
   </section>
 
   <section id="nat" data-label="Ruta nacional" data-screen-label="05 National leg" data-stage="nat" data-count="6" style="position:relative;height:540vh">
-    <div style="position:sticky;top:0;height:100vh;overflow:hidden">
+    <div style="position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden">
       <svg viewBox="0 0 320 430" preserveAspectRatio="xMidYMid meet" style="position:absolute;top:0;left:0;width:100%;height:62%" fill="none">
         <g data-route-shift="" data-win="430" data-total="850">
         <path d="M240,70 C240,140 90,140 90,210 C90,280 240,280 240,350 C240,420 95,420 95,490 C95,560 245,560 245,630 C245,700 110,700 110,780" stroke="#e3dac9" stroke-width="11" stroke-linecap="round"></path>
@@ -378,7 +441,7 @@
           <text data-dotlabel="" x="226" y="342" text-anchor="end">Popayán</text>
           <text data-dotlabel="" x="109" y="482">Pasto</text>
           <text data-dotlabel="" x="231" y="622" text-anchor="end">Las Lajas</text>
-          <text data-dotlabel="" x="124" y="772">La Vega</text>
+          <text data-dotlabel="" x="124" y="772">La Frontera</text>
         </g>
         <g data-marker="" data-upright="">
           <image href="assets/img/moto-riders.png" x="-25" y="-19" width="50" height="37.5"></image>
@@ -391,53 +454,90 @@
       <div style="position:absolute;left:0;right:0;bottom:0;height:46%">
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="Eje Cafetero" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+      <img src="assets/img/eje.jpg" alt="Eje Cafetero" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <p style="margin:0 0 4px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#a8b795">Kilómetro 0</p>
-          <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Eje Cafetero</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Café a las 5 a.m., neblina y la carretera abierta.</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M9 12 C8 9 10 7 9 4" stroke="#8fa681" stroke-width="1.4" stroke-linecap="round"></path>
+              <path d="M15 12 C14 9 16 7 15 4" stroke="#8fa681" stroke-width="1.4" stroke-linecap="round"></path>
+              <path d="M7 15 H21 L19.5 25 C19 27 9 27 8.5 25 Z" fill="#eee5d6" stroke="#8fa681" stroke-width="1.6" stroke-linejoin="round"></path>
+              <path d="M21 17 C26 17 26 23 21 23" stroke="#8fa681" stroke-width="1.6" fill="none" stroke-linecap="round"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Eje Cafetero</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Entre miradas y anhelos decidimos emprender una vida juntos; un hogar que inició con la constante de dos ruedas y la seguridad de tener al lado un corazón afín.</p>
         </div>
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
-          <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="Cali" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="width:auto;height:290px;aspect-ratio:918/1222;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;overflow:hidden">
+      <img src="assets/img/CLO.png" alt="Cali" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#f6e9e6;border:1px solid #e6cdc9">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">Cali</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a98d88">34 °C y salsa</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M13 26 V8 L23 5 V12" stroke="#b08d88" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              <ellipse cx="9.5" cy="26" rx="3.6" ry="2.6" transform="rotate(-18 9.5 26)" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.4"></ellipse>
+              <ellipse cx="19.5" cy="12" rx="3.6" ry="2.6" transform="rotate(-18 19.5 12)" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.4"></ellipse>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Cali</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Comprendimos que nos componen tantas dimensiones como sabores. Nuestra superficie guarda ritmos, comidas y la belleza de las costumbres que cada lugar impregna en el ser.</p>
         </div>
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
           <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #cfdcc0;background:repeating-linear-gradient(135deg,#f2f5eb 0 8px,#e9efdf 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="Popayán" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+      <img src="assets/img/POY.jpg" alt="Popayán" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#eef2e6;border:1px solid #cfdcc0">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">Popayán</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a9a80">blanco total</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 3 V7" stroke="#7f9074" stroke-width="1.6"></path>
+              <path d="M13.5 4.5 H18.5" stroke="#7f9074" stroke-width="1.4"></path>
+              <path d="M6 26 V16 L16 9 L26 16 V26 Z" fill="#e6eeda" stroke="#7f9074" stroke-width="1.6" stroke-linejoin="round"></path>
+              <path d="M13 26 V19 C13 17 19 17 19 19 V26" stroke="#7f9074" stroke-width="1.4" fill="#f4f7ef"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Popayán</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Una pequeña finca nos resguardó y en medio del aislamiento la vida nos recordó que la magia de la naturaleza siempre será el mejor alivio para el alma.</p>
         </div>
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
-          <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="Pasto" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="width:auto;height:290px;aspect-ratio:1200/1599;border-radius:16px;border:1.5px solid #e6cdc9;background:repeating-linear-gradient(135deg,#f8ede9 0 8px,#f1e2dd 8px 16px);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;overflow:hidden">
+      <img src="assets/img/PAS.jpeg" alt="Pasto" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <div style="display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;background:#f6e9e6;border:1px solid #e6cdc9">
-            <span style="font-family:'Cormorant Garamond',serif;font-size:22px">Pasto</span>
-            <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#a98d88">frío de páramo</span>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 28 V15" stroke="#b08d88" stroke-width="1.8" stroke-linecap="round"></path>
+              <path d="M16 15 C11 13 8 9 8 4 C13 6 16 10 16 15 Z" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.3" stroke-linejoin="round"></path>
+              <path d="M16 15 C16 9 19 5 24 3 C24 8 21 12 16 15 Z" fill="#f0d8d3" stroke="#b08d88" stroke-width="1.3" stroke-linejoin="round"></path>
+              <path d="M16 15 C13 12 12 8 13 3 C17 5 18 10 16 15 Z" fill="#f6e7e4" stroke="#b08d88" stroke-width="1.3" stroke-linejoin="round"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Pasto</h3>
           </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Este lugar nos enseñó lo básico; La vida se trata de disfrutar el camino sin perder de vista el destino.</p>
         </div>
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
-          <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="Santuario Las Lajas" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="width:auto;height:290px;aspect-ratio:3/4;border-radius:16px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;overflow:hidden">
+      <img src="assets/img/LAJ.jpg" alt="Santuario Las Lajas" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Las Lajas</h3>
-          <p style="margin:0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;line-height:1.45;color:#41493f">“Paramos a dar las gracias antes de volver a casa.”</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M16 6 V2" stroke="#8fa681" stroke-width="1.4"></path>
+              <path d="M14.5 3.5 H17.5" stroke="#8fa681" stroke-width="1.2"></path>
+              <path d="M11 27 V17 C11 10 21 10 21 17 V27 Z" fill="#e6eeda" stroke="#8fa681" stroke-width="1.6" stroke-linejoin="round"></path>
+              <path d="M14 27 V20 C14 18 18 18 18 20 V27" stroke="#8fa681" stroke-width="1.3" fill="#f4f7ef"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">Las Lajas</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">El ser humano es capaz de romper imposibles. Así como nosotros buscamos acabar con la utopía de un amor real y veráz.</p>
         </div>
         <div data-stop="" style="position:absolute;inset:auto 26px 26px;opacity:0;transition:opacity .25s linear">
-          <div style="width:100%;height:290px;border-radius:16px;border:1.5px solid #cfdcc0;background:repeating-linear-gradient(135deg,#f2f5eb 0 8px,#e9efdf 8px 16px);display:flex;align-items:center;justify-content:center;margin-bottom:14px;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="La Vega, llegada" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+          <div style="width:auto;height:290px;aspect-ratio:1200/1599;border-radius:16px;border:1.5px solid #cfdcc0;background:repeating-linear-gradient(135deg,#f2f5eb 0 8px,#e9efdf 8px 16px);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;overflow:hidden">
+      <img src="assets/img/Frontera.jpeg" alt="La Frontera, límite con Ecuador" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-          <p style="margin:0 0 4px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#a8b795">Fin del viaje</p>
-          <h3 style="margin:0 0 6px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">La Vega</h3>
-          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">Cundinamarca. Verde, tibio, nuestro.</p>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <path d="M10 29 V4" stroke="#7f9074" stroke-width="1.8" stroke-linecap="round"></path>
+              <path d="M10 5 L23 9 L10 13 Z" fill="#cfdcc0" stroke="#7f9074" stroke-width="1.5" stroke-linejoin="round"></path>
+            </svg>
+            <h3 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:30px">La Frontera</h3>
+          </div>
+          <p style="margin:0;font-size:14px;line-height:1.6;color:#6f6a5d">La ambigüedad más grande supone creer que una frontera separa, cuando justo allí es donde la cultura de mezclarnos está más inmersa.</p>
         </div>
       </div>
     </div>
@@ -445,9 +545,9 @@
 
   <section id="bridge" data-label="La Vega" data-screen-label="06 Emotional bridge" style="position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 30px">
     <div data-reveal="" style="width:100%;height:300px;border-radius:18px;border:1.5px solid #d9cfbe;background:repeating-linear-gradient(135deg,#f4ede1 0 8px,#eee5d6 8px 16px);display:flex;align-items:center;justify-content:center;overflow:hidden">
-      <img src="https://media.traveler.es/photos/66c6f6f5e3690ad4e309ad06/16:9/w_2560%2Cc_limit/GettyImages-1070065352.jpeg" alt="pareja, La Vega" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
+      <img src="assets/img/boda.jpg" alt="pareja, La Vega" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block" />
     </div>
-    <p data-reveal="" data-delay="180" style="margin:34px 0 0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:27px;font-style:italic;line-height:1.45;color:#41493f;text-wrap:pretty">Y después de tantos caminos… decidimos quedarnos juntos.</p>
+    <p data-reveal="" data-delay="180" style="margin:34px 0 0;text-align:center;font-family:'Cormorant Garamond',serif;font-size:27px;font-style:italic;line-height:1.45;color:#41493f;text-wrap:pretty">Cada kilometro recorrido nos demostró que entrelazar nuestras manos es suficiente para vivir el camino llamado vida, a través de la fuerza más poderosa del universo... el amor.</p>
     <div data-reveal="" data-delay="300" style="display:flex;justify-content:center;margin-top:30px">
       <svg width="120" height="34" viewBox="0 0 240 68" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path d="M4,52 H76 M164,52 H236" stroke="#d9cfbe" stroke-width="1.6"></path>
@@ -464,7 +564,7 @@
   </section>
 
   <section id="reveal" data-label="La invitación" data-screen-label="07 Invitation reveal" style="position:relative;height:260vh">
-    <div style="position:sticky;top:0;height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center">
+    <div style="position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;display:flex;align-items:center;justify-content:center">
       <div data-rev-bg="" style="position:absolute;inset:0;background:linear-gradient(180deg,#5b7657 0%,#3f5a42 100%);opacity:0"></div>
       <svg data-rev-leaf="" style="position:absolute;top:26px;left:-52px;width:220px;opacity:0" viewBox="0 0 100 130" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="50" cy="52" r="41" stroke="#8fae83" stroke-width="1.6"></circle>
@@ -510,7 +610,7 @@
           <div style="position:absolute;top:22px;left:16px;transform:rotate(-11deg);padding:6px 9px;border:1.6px solid #cbb6b1;border-radius:4px;color:#b99b96;font-family:ui-monospace,Menlo,monospace;font-size:8px;letter-spacing:.14em;line-height:1.4;text-align:center">BOG<br />2019</div>
           <div style="position:absolute;top:66px;right:14px;transform:rotate(8deg);padding:6px 9px;border:1.6px solid #bccfa9;border-radius:50%;color:#7f9074;font-family:ui-monospace,Menlo,monospace;font-size:8px;letter-spacing:.12em;line-height:1.4;text-align:center">THA<br />2022</div>
           <div style="position:absolute;top:124px;left:20px;transform:rotate(6deg);padding:5px 8px;border:1.6px solid #cbb6b1;border-radius:4px;color:#b99b96;font-family:ui-monospace,Menlo,monospace;font-size:8px;letter-spacing:.12em">TROMSØ</div>
-          <div style="position:absolute;bottom:26px;right:18px;transform:rotate(-6deg);padding:5px 8px;border:1.6px solid #bccfa9;border-radius:4px;color:#7f9074;font-family:ui-monospace,Menlo,monospace;font-size:8px;letter-spacing:.12em">CDG · PAR</div>
+          <div style="position:absolute;bottom:26px;right:18px;transform:rotate(-6deg);padding:5px 8px;border:1.6px solid #bccfa9;border-radius:4px;color:#7f9074;font-family:ui-monospace,Menlo,monospace;font-size:8px;letter-spacing:.12em">PEK · JFK</div>
         </div>
         <div data-rev-card="" style="position:absolute;left:68px;width:204px;bottom:44px;height:304px;border-radius:5px;background:#fbf7f0;box-shadow:0 14px 30px rgba(24,36,26,.3);z-index:2;transform:translateY(0) scale(1);display:flex;flex-direction:column;overflow:hidden">
           <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 11px;background:#eef2e6;border-bottom:1px dashed #cfdcc0">
@@ -519,8 +619,8 @@
           </div>
           <div style="flex:1;padding:13px 11px 11px;display:flex;flex-direction:column;justify-content:space-between">
             <div>
-              <p style="margin:0 0 5px;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.02em;color:#8a8375">PASAJERO</p>
-              <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:27px;line-height:1.1">Johan <span style="font-style:italic;color:#a8b795">&amp;</span> Mónica</h2>
+              <p style="margin:0 0 5px;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.02em;color:#8a8375">PASAJEROS</p>
+              <h2 id="passengerNames" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:27px;line-height:1.1">Johan <span style="font-style:italic;color:#a8b795">&amp;</span> Mónica</h2>
             </div>
             <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:4px">
               <div>
@@ -544,7 +644,7 @@
               </div>
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">SILLA</p>
-                <p style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">TUYA</p>
+                <p style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">11 F</p>
               </div>
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">NOCHES</p>
@@ -559,7 +659,7 @@
                 <path d="M6,1 V21 M13,1 V21 M23,1 V21 M30,1 V21 M37,1 V21 M44,1 V21 M48,1 V21" stroke-width="2.6"></path>
               </g>
             </svg>
-            <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.04em;line-height:1.5;color:#8a7a76">LA VEGA · 21–22 NOV · SOLO IDA</p>
+            <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.04em;line-height:1.5;color:#8a7a76">LA VEGA · 21–22 NOV · IDA</p>
           </div>
         </div>
         <div data-rev-flap="" style="position:absolute;left:62px;width:216px;bottom:36px;height:320px;transform-origin:left center;transform:rotateY(0deg);transform-style:preserve-3d;z-index:4">
@@ -614,12 +714,13 @@
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#a8b795">Fechas</p>
         <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1">21<span style="font-size:24px;font-style:italic;color:#a8b795"> &amp; </span>22</p>
         <p style="margin:6px 0 14px;font-size:13px;letter-spacing:.16em;color:#6f6a5d">NOVIEMBRE 2026</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Sábado de ceremonia y fiesta, domingo de piscina y despedida lenta.</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Llegada: Sáb 21 de nov 11:59 am.</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Salida: Dom 22 de nov 11:59 am.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#a8b795">Lugar</p>
         <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.15">La Vega,<br />Cundinamarca</p>
-        <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6f6a5d">A 1 h 30 de Bogotá por la vía Villeta.</p>
+        <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6f6a5d">A 1 h 30 de Bogotá por la vía Villeta. El lugar exacto será confirmado posteriormente.</p>
         <a href="https://maps.google.com/?q=La+Vega,+Cundinamarca" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid #c7d5b6;font-size:11px;letter-spacing:.16em;text-transform:uppercase">Ver en el mapa →</a>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
@@ -628,24 +729,24 @@
         <div style="display:flex;gap:14px;margin-bottom:14px">
           <div style="display:flex;flex-direction:column;gap:7px">
             <span style="width:52px;height:52px;border-radius:50%;background:#dfe6d4;border:1px solid #c7d0b8"></span>
-            <span style="font-size:11px;line-height:1.4;color:#6f6a5d">Verde tenue<br />crema</span>
+            <span style="font-size:11px;line-height:1.4;color:#6f6a5d">Verde salvia<br />claro</span>
           </div>
           <div style="display:flex;flex-direction:column;gap:7px">
             <span style="width:52px;height:52px;border-radius:50%;background:#f0e0d8;border:1px solid #ddc7bd"></span>
-            <span style="font-size:11px;line-height:1.4;color:#6f6a5d">Rosa beige<br />crema</span>
+            <span style="font-size:11px;line-height:1.4;color:#6f6a5d">Rosa beige<br />Coral solido</span>
           </div>
         </div>
         <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Te agradecemos dejarlos libres para nosotros. Todo lo demás es bienvenido.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#f6e9e6;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#b99b96">Alojamiento</p>
-        <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.15">Una noche<br />incluida</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Nosotros ponemos la cama del sábado. Solo trae lo que quepa en un bolso.</p>
+        <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.15">Una noche<br />incluída</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Nosotros ponemos la cama, el almuerzo y la cena del sábado y el desayuno del Domingo. Solo trae lo que quepa en un boTso.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#a8b795">Código de vestuario</p>
-        <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.1">Smart casual</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Elegante y fresco. Tacón bajo: el jardín es de pasto y piedra.</p>
+        <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.1">Tropical Chic</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Queremos que disfrutes cómodamente; elige telas ligeras y colores claros. ¡La corbata se queda en casa!. <br> Tacón bajo/sin tacón: el jardín es de pasto y piedra.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#eef2e6;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8a9a80">Clima</p>
@@ -654,12 +755,12 @@
       </div>
     </div>
     <div style="display:flex;justify-content:center;gap:6px;margin-top:4px">
-      <span style="width:5px;height:5px;border-radius:50%;background:#cdd8c4"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#7c9375"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#7c9375"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#7c9375"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#7c9375"></span>
-      <span style="width:5px;height:5px;border-radius:50%;background:#7c9375"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#cdd8c4;transition:background .25s ease,transform .25s ease"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#7c9375;transition:background .25s ease,transform .25s ease"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#7c9375;transition:background .25s ease,transform .25s ease"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#7c9375;transition:background .25s ease,transform .25s ease"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#7c9375;transition:background .25s ease,transform .25s ease"></span>
+      <span data-carousel-dot="" style="width:5px;height:5px;border-radius:50%;background:#7c9375;transition:background .25s ease,transform .25s ease"></span>
     </div>
   </section>
 
@@ -708,8 +809,9 @@
     </svg>
     <p data-reveal="" style="margin:0 0 14px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#9c9483">Última parada</p>
     <h2 data-reveal="" data-delay="80" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1.1">¿Nos acompañas?</h2>
-    <p data-reveal="" data-delay="160" style="margin:0;max-width:290px;font-size:14px;line-height:1.7;color:#6f6a5d">Confírmanos antes del <strong style="font-weight:600">15 de octubre</strong> para reservar tu lugar y tu habitación.</p>
+    <p data-reveal="" data-delay="160" style="margin:0;max-width:290px;font-size:14px;line-height:1.7;color:#6f6a5d">Confírmanos antes del <strong style="font-weight:600">4 de septiembre</strong> para reservar tu lugar y tu habitación.</p>
     <p data-reveal="" data-delay="240" style="margin:34px 0 0;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#a8b795">Johan &amp; Mónica</p>
+    <p id="personalMessage" data-reveal="" data-delay="320" style="margin:20px 0 0;max-width:290px;font-size:13px;line-height:1.7;font-style:italic;color:#6f6a5d"></p>
   </section>
 
   <div data-cta="" style="position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(24px);z-index:70;opacity:0;pointer-events:none;transition:opacity .5s ease,transform .5s cubic-bezier(.4,0,.2,1);width:100%;max-width:430px;padding:0 26px;display:flex;justify-content:center">
@@ -720,6 +822,6 @@
   </div>
 </div>
 </div>
-<script src="assets/js/main.js" defer></script>
+<script src="assets/js/main.js?v=6" defer></script>
 </body>
 </html>

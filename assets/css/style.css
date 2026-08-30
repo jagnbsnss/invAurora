@@ -57,8 +57,173 @@ a:hover {
     min-height: unset;
     border-radius: 22px;
     box-shadow: 0 30px 70px rgba(47, 58, 51, 0.22);
-    overflow: hidden;
+    overflow: clip;
   }
+}
+
+/* Gate shown instead of the invitation on real desktops/laptops (wide
+   viewport + a mouse-precision pointer). A wide phone or tablet held in
+   landscape still has a coarse/touch pointer, so it keeps seeing the
+   invitation — only an actual computer gets the "open it on your phone"
+   message. Pure CSS so it applies before anything paints. */
+.mobile-gate {
+  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+  background: #fbf7f0;
+  color: #2f3a33;
+  font-family: Karla, system-ui, sans-serif;
+}
+
+.mobile-gate-kicker {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #9c9483;
+}
+
+.mobile-gate-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 38px;
+  line-height: 1.15;
+}
+
+.mobile-gate-title span {
+  font-style: italic;
+  font-size: 26px;
+  color: #a8b795;
+}
+
+.mobile-gate-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobile-gate-divider span {
+  width: 34px;
+  height: 1px;
+  background: #d9cfbe;
+}
+
+.mobile-gate-message {
+  margin: 0;
+  max-width: 300px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #6f6a5d;
+}
+
+@media (min-width: 620px) and (pointer: fine) {
+  .site-frame {
+    display: none;
+  }
+  .mobile-gate {
+    display: flex;
+  }
+}
+
+/* City gate — shown on load until the guest types the city assigned to
+   their family group. Sits above the whole card (fixed, full-viewport) and
+   is hidden by JS once a valid city is entered (or already saved). */
+.city-gate {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 40px;
+  text-align: center;
+  background: #fbf7f0;
+  color: #2f3a33;
+  font-family: Karla, system-ui, sans-serif;
+}
+
+.city-gate-kicker {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #9c9483;
+}
+
+.city-gate-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.city-gate-message {
+  margin: 0;
+  max-width: 280px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #6f6a5d;
+}
+
+.city-gate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 6px;
+}
+
+.city-gate-input {
+  width: 100%;
+  padding: 13px 16px;
+  border-radius: 999px;
+  border: 1.5px solid #d9cfbe;
+  background: #fff;
+  font-size: 14px;
+  color: #2f3a33;
+  text-align: center;
+}
+
+.city-gate-input:focus-visible {
+  outline: 2px solid #7e9a76;
+  outline-offset: 2px;
+}
+
+.city-gate-button {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 999px;
+  border: none;
+  background: #3f5a42;
+  color: #f7f4ec;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.city-gate-button:hover,
+.city-gate-button:focus-visible {
+  background: #334b36;
+}
+
+.city-gate-error {
+  margin: 0;
+  font-size: 12px;
+  color: #b06a5f;
 }
 
 [data-carousel] {
@@ -157,11 +322,6 @@ a:hover {
 
 /* Interactive states that the design expressed as inline "style-hover" —
    promoted to real CSS so :hover / :focus-visible work everywhere. */
-.thai-toggle:hover,
-.thai-toggle:focus-visible {
-  background: #e4ebd8 !important;
-}
-
 .cta-link:hover,
 .cta-link:focus-visible {
   background: #334b36 !important;

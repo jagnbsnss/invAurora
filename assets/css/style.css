@@ -1,0 +1,186 @@
+/* Johan & Mónica — invitación de boda
+   Mobile-first. Not designed for desktop use: on wide viewports the mobile
+   card is centered on a soft backdrop instead of stretching full-width. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #e7dfd0;
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior-y: contain;
+}
+
+a {
+  color: #5f7d5b;
+  text-decoration: none;
+}
+a:hover {
+  color: #3e5546;
+}
+
+/* Desktop / wide-viewport fallback: center the phone-width card on a calm
+   backdrop rather than stretching the layout — this experience is designed
+   for mobile only. */
+.site-frame {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #e7dfd0;
+}
+
+.site-card {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  background: #fbf7f0;
+  color: #2f3a33;
+  font-family: Karla, system-ui, sans-serif;
+  overflow-x: clip;
+  position: relative;
+}
+
+@media (min-width: 620px) {
+  .site-frame {
+    padding: 32px 16px;
+    align-items: center;
+  }
+  .site-card {
+    min-height: unset;
+    border-radius: 22px;
+    box-shadow: 0 30px 70px rgba(47, 58, 51, 0.22);
+    overflow: hidden;
+  }
+}
+
+[data-carousel] {
+  scrollbar-width: none;
+}
+[data-carousel]::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(7px);
+  }
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.5deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+/* Clips + fades the drifting aurora so it dissolves into the page background
+   well before the section ends, instead of cutting hard into section 2.
+   Sits on a non-animating wrapper so the mask stays put while the aurora
+   drifts inside it. */
+.opening-aurora-mask {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 33%, transparent 88%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 33%, transparent 88%);
+}
+
+/* Constantly-drifting aurora glow behind the opening section — deliberately
+   noticeable but blurred/desaturated enough to stay in the background. */
+.opening-aurora {
+  position: absolute;
+  inset: -12% -20%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.75;
+  filter: blur(40px);
+  background: radial-gradient(
+      42% 34% at 20% 20%,
+      rgba(126, 154, 118, 0.85),
+      transparent 70%
+    ),
+    radial-gradient(48% 40% at 76% 16%, rgba(214, 160, 154, 0.9), transparent 70%),
+    radial-gradient(46% 38% at 55% 34%, rgba(168, 183, 149, 0.75), transparent 70%),
+    radial-gradient(40% 34% at 26% 68%, rgba(159, 194, 178, 0.65), transparent 70%),
+    radial-gradient(38% 32% at 82% 66%, rgba(210, 165, 168, 0.7), transparent 70%);
+  background-repeat: no-repeat;
+  animation: auroraDrift 2.4s linear infinite;
+  will-change: transform;
+}
+
+@keyframes auroraDrift {
+  0% {
+    transform: translate3d(-12%, -9%, 0) rotate(0deg) scale(1.08);
+  }
+  12.5% {
+    transform: translate3d(10%, -10%, 0) rotate(6deg) scale(1.16);
+  }
+  25% {
+    transform: translate3d(13%, -2%, 0) rotate(11deg) scale(1.24);
+  }
+  37.5% {
+    transform: translate3d(9%, 8%, 0) rotate(15deg) scale(1.3);
+  }
+  50% {
+    transform: translate3d(-2%, 11%, 0) rotate(8deg) scale(1.22);
+  }
+  62.5% {
+    transform: translate3d(-11%, 8%, 0) rotate(-6deg) scale(1.16);
+  }
+  75% {
+    transform: translate3d(-13%, -1%, 0) rotate(-12deg) scale(1.26);
+  }
+  87.5% {
+    transform: translate3d(-6%, -9%, 0) rotate(-6deg) scale(1.14);
+  }
+  100% {
+    transform: translate3d(-12%, -9%, 0) rotate(0deg) scale(1.08);
+  }
+}
+
+/* Interactive states that the design expressed as inline "style-hover" —
+   promoted to real CSS so :hover / :focus-visible work everywhere. */
+.thai-toggle:hover,
+.thai-toggle:focus-visible {
+  background: #e4ebd8 !important;
+}
+
+.cta-link:hover,
+.cta-link:focus-visible {
+  background: #334b36 !important;
+}
+
+button {
+  font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #7e9a76;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

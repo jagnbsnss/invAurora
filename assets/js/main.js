@@ -25,32 +25,38 @@
   // personalizes the boarding pass name, the closing message and the
   // WhatsApp confirmation text.
   //
-  // PLACEHOLDER DATA: these 20 cities and names are random examples —
-  // replace "city", "passengers" and "message" below with your real
-  // guest list before sharing the invitation.
+  // OPTIONAL "arrival" override: most guests arrive Sat 21 Nov at 11:59 am
+  // for 1 night (see DEFAULT_ARRIVAL below) — leave "arrival" out for those
+  // groups. For guests who arrive a day earlier and/or at a different hour
+  // (e.g. family staying the extra day), add:
+  //   arrival: { day: 20, time: "4:00 pm", nights: 2 }
+  // "day" is the arrival day-of-month (20 or 21 — departure is always the
+  // 22nd), "time" is shown as typed (e.g. "4:00 pm"), "nights" is how many
+  // nights they stay. This updates the countdown, the "Fechas" card and the
+  // boarding pass everywhere on the site.
 
   const GUEST_GROUPS = [
-    { city: "Xian", passengers: "Nicolas Camilo", message: "." },
-    { city: "Miami", passengers: "Patricia & Guillermo", message: "." },
-    { city: "Madrid", passengers: "Margarita", message: "." },
-    { city: "Dubai", passengers: "Nefta & Paula", message: "." },
-    { city: "Budapest", passengers: "Arely y Nixon", message: "." },
-    { city: "Cracovia", passengers: "Aleja & Alejo", message: "." },
-    { city: "Praga", passengers: "Andre", message: "." },
-    { city: "Vergara", passengers: "Angélica & Beto", message: "." },
-    { city: "Oslo", passengers: "Otilia & Jairo", message: "." },
-    { city: "Estocolmo", passengers: "Thomas Steve", message: "." },
-    { city: "Beijing", passengers: "Primo!", message: "." },
-    { city: "Viena", passengers: "Carlos, Lore & Noah", message: "." },
-    { city: "Chicago", passengers: "Ana", message: "." },
-    { city: "Santo Domingo", passengers: "Sebas & Angie", message: "." },
-    { city: "Shanghai", passengers: "Sebas & Angélica", message: "." },
-    { city: "Cusco", passengers: "Juni & Nata", message: "." },
-    { city: "Ubud", passengers: "Jose & Francy", message: "." },
-    { city: "Nueva York", passengers: "Cristian & Dani", message: "." },
-    { city: "Bangkok", passengers: "Jose, Der, Isa & Sebas", message: "." },
-    { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "." },
-    { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "." }
+    { city: "Xian", passengers: "Nicolas Camilo", message: "Camilo {negrito} gracias por el cariño que nos expresas en cada detalle!!" },
+    { city: "Miami", passengers: "Patricia & Guillermo", message: "Papis y suegros!! Mil gracias por apoyarnos, impulsarnos e inspirarnos. Los queremos con todo nuestro corazón!!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Madrid", passengers: "Margarita", message: "Mami y Suegra!! Gracias por cobijarnos, estar tan pendiente y enseñarnos todos los días. La queremos mucho con el corazón!!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Dubai", passengers: "Nefta & Paula", message: "Jesús y Paula, mil gracias porque aún en la distancia, siempre están presentes incondicionalmente!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Budapest", passengers: "Arely y Nixon", message: "Nitson y Arely, gracias por cada detalle que siempre dan desde el corazón." },
+    { city: "Cracovia", passengers: "Aleja & Alejo", message: "Alejos!! Muchas gracias por estar presentes en los momentos más importantes de nuestra vida.", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Praga", passengers: "Andre", message: "Andre, gracias por el apoyo incondicional que nos prestas en cada etapa de nuestra relación.", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Vergara", passengers: "Angélica & Beto", message: "Angikila y Betico, gracias por inspirarnos y abrazarnos con el corazón!" },
+    { city: "Oslo", passengers: "Otilia & Jairo", message: "Mita Otilia y Papi/Suegro!! Muchisimas gracias por cobijarnos y demostrarnos tanto amor sincero. Los queremos mucho con todo nuestro corazón!!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Estocolmo", passengers: "Thomas Steve", message: "Negri!! Gracias por estar presente en nuestra vida y por todo el cariño demostrado. Por más encuentros en Estocolmo!" },
+    { city: "Beijing", passengers: "Primo!", message: "Mopri!! Muchas gracias por ser constante a través de los años y conservar esta amistad!" },
+    { city: "Viena", passengers: "Carlos, Lore & Noah", message: "Carlos, Lore y Noah... Mil gracias por ser inspiración y llenarnos de sonrisas y bellos momentos!" },
+    { city: "Chicago", passengers: "Ana", message: "Anaaa! Muchas gracias por tu apoyo y la sinceridad de tu amistad!" },
+    { city: "Santo Domingo", passengers: "Sebas & Angie", message: "Seaos y Angie!! Mil gracias por la incondicionalidad de su amistad y tantos momentos especiales... Hasta CUCHOS!" },
+    { city: "Shanghai", passengers: "Sebas & Angélica", message: "Quiroz y Angelica! Mil gracias por hacernos parte de su vida y construir tantos momentos juntos!" },
+    { city: "Cusco", passengers: "Juni & Nata", message: "Ñuñi y Nata!! Mil gracias por ser complices en todas las aventuras y estar en todo tipo de momentos!!" },
+    { city: "Ubud", passengers: "Jose & Francy", message: "Jose y Francy!! Muchas gracias por sembrar esta amistad con sinceridad y apoyo incondicional." },
+    { city: "Nueva York", passengers: "Cristian & Dani", message: "Cristian y Dani, mil gracias por todo el apoyo en todos estos años e inspirarnos desde el amor!" },
+    { city: "Bangkok", passengers: "Jose, Der, Isa & Sebas", message: "Compis, Sebas e Isa!! Mil gracias por hacernos parte de su vida y permitirnos estar en el presente y ojalá el futuro. (Pdta: Aguante el verde!!)" },
+    { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "Abuelitas!! Muchas gracias por cada enseñanza, apoyo y amor real!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
+    { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "Gracias por ayudarnos en este momento tan importante de nuestra vida, les auguramos muchos éxitos y crecimiento sin límite!!" }
   ];
   const CITY_STORAGE_KEY = "invitacionCiudad";
 
@@ -71,12 +77,57 @@
     return GUEST_GROUPS.find((g) => normalizeCity(g.city) === n) || null;
   }
 
+  // ---- Arrival schedule (per guest group) --------------------------------
+  // Standard schedule: arrive Sat 21 Nov, leave Sun 22 Nov, 1 night. Guests
+  // with a group.arrival override (see the comment above GUEST_GROUPS) get
+  // an earlier arrival day/time reflected everywhere dates are shown.
+  const DEFAULT_ARRIVAL = { day: 21, time: "11:59 am", nights: 1 };
+  const DEPARTURE_DAY = 22;
+  const NOV_2026_WEEKDAYS = { 19: "Jue", 20: "Vie", 21: "Sáb", 22: "Dom", 23: "Lun" };
+
+  function formatDayList(days) {
+    const sep = '<span style="font-size:24px;font-style:italic;color:#a8b795"> &amp; </span>';
+    if (days.length === 1) return String(days[0]);
+    return days.slice(0, -1).join(", ") + sep + days[days.length - 1];
+  }
+
+  function applyArrivalSchedule(group) {
+    const arrival = Object.assign({}, DEFAULT_ARRIVAL, (group && group.arrival) || {});
+    const days = [];
+    for (let d = arrival.day; d <= DEPARTURE_DAY; d++) days.push(d);
+
+    const datesRange = document.getElementById("datesRange");
+    if (datesRange) datesRange.innerHTML = formatDayList(days);
+
+    const heroDates = document.getElementById("heroDates");
+    if (heroDates) heroDates.textContent = days.join(" · ") + " NOV";
+
+    const arrivalLine = document.getElementById("arrivalLine");
+    if (arrivalLine) {
+      const wd = NOV_2026_WEEKDAYS[arrival.day] || "";
+      arrivalLine.textContent = "Llegada: " + wd + " " + arrival.day + " de nov " + arrival.time + ".";
+    }
+
+    const passFecha = document.getElementById("passFecha");
+    if (passFecha) passFecha.textContent = arrival.day + " NOV";
+
+    const passHora = document.getElementById("passHora");
+    if (passHora) passHora.textContent = arrival.time.toUpperCase();
+
+    const passNoches = document.getElementById("passNoches");
+    if (passNoches) passNoches.textContent = String(arrival.nights);
+
+    const passRange = document.getElementById("passRange");
+    if (passRange) passRange.textContent = "LA VEGA · " + arrival.day + "–" + DEPARTURE_DAY + " NOV · IDA";
+  }
+
   function applyGuestGroup(group) {
     if (!group) return;
     const nameEl = document.getElementById("passengerNames");
     if (nameEl) nameEl.textContent = group.passengers;
     const msgEl = document.getElementById("personalMessage");
     if (msgEl) msgEl.textContent = group.message || "";
+    applyArrivalSchedule(group);
     CONFIG.whatsappMessage =
       "¡Hola Johan y Mónica! Somos " +
       group.passengers +
@@ -174,6 +225,30 @@
     const num = CONFIG.whatsappNumber.replace(/[^0-9]/g, "");
     const msg = encodeURIComponent(CONFIG.whatsappMessage);
     link.href = "https://wa.me/" + num + "?text=" + msg;
+  }
+
+  // ---- Dress code reference lightbox -------------------------------------
+  function setupDressCodeModal() {
+    const openBtn = document.getElementById("dressCodeOpen");
+    const modal = document.getElementById("dressCodeModal");
+    const closeBtn = document.getElementById("dressCodeClose");
+    if (!openBtn || !modal || !closeBtn) return;
+
+    const open = () => {
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+    const close = () => {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    openBtn.addEventListener("click", open);
+    closeBtn.addEventListener("click", close);
+    q("[data-lightbox-close]", modal).forEach((el) => el.addEventListener("click", close));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
   }
 
   // ---- Details carousel dots --------------------------------------------
@@ -394,6 +469,7 @@
       setupCtaLink();
     }
     setupDetailsCarousel();
+    setupDressCodeModal();
 
     // find the real scroll container (window, or a scrolling ancestor)
     site.sc = window;

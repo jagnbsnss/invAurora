@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>.mobile-gate{display:none}</style>
-<link rel="stylesheet" href="assets/css/style.css?v=3" />
+<link rel="stylesheet" href="assets/css/style.css?v=6" />
 </head>
 <body>
 <div class="mobile-gate">
@@ -45,6 +45,9 @@
 <div class="site-frame">
 
 <div id="cityGate" class="city-gate" role="dialog" aria-modal="true" aria-label="Verifica tu ciudad">
+  <div class="opening-aurora-mask opening-aurora-mask--gate" aria-hidden="true">
+    <div class="opening-aurora opening-aurora--strong"></div>
+  </div>
   <svg width="72" height="54" viewBox="0 0 120 90" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
     <g fill="#f1dedb" stroke="#c4a09b" stroke-width="1.9">
       <path d="M60,72 C36,70 14,60 6,44 C28,40 50,54 60,72 Z"></path>
@@ -57,15 +60,15 @@
     <path d="M60,72 C49,54 51,26 60,10 C69,26 71,54 60,72 Z" fill="#fbf3f1" stroke="#c4a09b" stroke-width="1.9"></path>
   </svg>
   <p class="city-gate-kicker">Antes de comenzar</p>
-  <h1 class="city-gate-title">¿Desde qué ciudad<br />nos acompañas?</h1>
+  <h1 class="city-gate-title">Te hemos asignado una ciudad<br />con muchos recuerdos!</h1>
   <div class="mobile-gate-divider">
     <span></span>
     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8,1 L8,15 M2,8 L14,8" stroke="#c9a6a1" stroke-width="1.2" stroke-linecap="round"></path></svg>
     <span></span>
   </div>
-  <p class="city-gate-message">Escribe el nombre de la ciudad que te asignamos para abrir tu invitación.</p>
+  <p class="city-gate-message">Escribe el nombre de la ciudad para abrir tu invitación.</p>
   <form id="cityGateForm" class="city-gate-form" autocomplete="off">
-    <input id="cityGateInput" type="text" inputmode="text" placeholder="Ej: Medellín" class="city-gate-input" />
+    <input id="cityGateInput" type="text" inputmode="text" placeholder="Ej: Tokio" class="city-gate-input" />
     <button type="submit" class="city-gate-button">Ingresar</button>
   </form>
   <p id="cityGateError" class="city-gate-error" hidden>No encontramos esa ciudad. Verifica cómo la escribiste.</p>
@@ -79,6 +82,14 @@
   } catch (e) {}
 })();
 </script>
+
+<div id="dressCodeModal" class="lightbox" role="dialog" aria-modal="true" aria-label="Referencia del código de vestuario" hidden>
+  <div class="lightbox-backdrop" data-lightbox-close=""></div>
+  <div class="lightbox-content">
+    <button type="button" id="dressCodeClose" class="lightbox-close" aria-label="Cerrar">&times;</button>
+    <img src="assets/img/dress-code.jpg" alt="Guía de código de vestuario Tropical Formal, con ejemplos de atuendo para hombres y mujeres" class="lightbox-img" />
+  </div>
+</div>
 
 <div class="site-card">
 
@@ -138,12 +149,12 @@
     <h1 data-reveal="" data-delay="120" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:58px;line-height:1.02;text-align:center;letter-spacing:.01em">Johan<br /><span style="font-style:italic;font-size:34px;color:#a8b795">&amp;</span><br />Mónica</h1>
     <div data-reveal="" data-delay="240" style="display:flex;align-items:center;gap:12px;margin-top:30px">
       <span style="width:34px;height:1px;background:#d9cfbe"></span>
-      <p style="margin:0;font-size:13px;letter-spacing:.2em;color:#6f6a5d">21 · 22 NOV</p>
+      <p id="heroDates" style="margin:0;font-size:13px;letter-spacing:.2em;color:#6f6a5d">21 · 22 NOV</p>
       <span style="width:34px;height:1px;background:#d9cfbe"></span>
     </div>
     <p data-reveal="" data-delay="320" style="margin:8px 0 0;font-size:12px;letter-spacing:.12em;color:#9c9483">La Vega, Cundinamarca</p>
     <div data-reveal="" data-delay="460" style="position:absolute;bottom:72px;display:flex;flex-direction:column;align-items:center;gap:10px">
-      <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#9c9483">Baja para comenzar!</span>
+      <span style="font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:#9c9483">Desliza para comenzar!</span>
       <svg width="16" height="26" viewBox="0 0 16 26" fill="none" style="animation:bob 2.4s ease-in-out infinite">
         <path d="M8,1 L8,21 M2,15 L8,22 L14,15" stroke="#a8b795" stroke-width="2" stroke-linecap="round"></path>
       </svg>
@@ -636,11 +647,11 @@
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px 8px;padding-top:12px;border-top:1px solid #ece3d3">
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">FECHA</p>
-                <p style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">21 NOV</p>
+                <p id="passFecha" style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">21 NOV</p>
               </div>
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">HORA</p>
-                <p style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">11:59 AM</p>
+                <p id="passHora" style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">11:59 AM</p>
               </div>
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">SILLA</p>
@@ -648,7 +659,7 @@
               </div>
               <div>
                 <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:0;color:#8a8375">NOCHES</p>
-                <p style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">1</p>
+                <p id="passNoches" style="margin:2px 0 0;font-size:13px;font-weight:500;color:#3f4a41">1</p>
               </div>
             </div>
           </div>
@@ -659,7 +670,7 @@
                 <path d="M6,1 V21 M13,1 V21 M23,1 V21 M30,1 V21 M37,1 V21 M44,1 V21 M48,1 V21" stroke-width="2.6"></path>
               </g>
             </svg>
-            <p style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.04em;line-height:1.5;color:#8a7a76">LA VEGA · 21–22 NOV · IDA</p>
+            <p id="passRange" style="margin:0;font-family:ui-monospace,Menlo,monospace;font-size:10.5px;letter-spacing:.04em;line-height:1.5;color:#8a7a76">LA VEGA · 21–22 NOV · IDA</p>
           </div>
         </div>
         <div data-rev-flap="" style="position:absolute;left:62px;width:216px;bottom:36px;height:320px;transform-origin:left center;transform:rotateY(0deg);transform-style:preserve-3d;z-index:4">
@@ -712,9 +723,9 @@
     <div data-carousel="" data-reveal="" data-delay="200" style="display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 30px 22px;scrollbar-width:none">
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#a8b795">Fechas</p>
-        <p style="margin:0;font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1">21<span style="font-size:24px;font-style:italic;color:#a8b795"> &amp; </span>22</p>
+        <p id="datesRange" style="margin:0;font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1">21<span style="font-size:24px;font-style:italic;color:#a8b795"> &amp; </span>22</p>
         <p style="margin:6px 0 14px;font-size:13px;letter-spacing:.16em;color:#6f6a5d">NOVIEMBRE 2026</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Llegada: Sáb 21 de nov 11:59 am.</p>
+        <p id="arrivalLine" style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Llegada: Sáb 21 de nov 11:59 am.</p>
         <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Salida: Dom 22 de nov 11:59 am.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
@@ -749,23 +760,24 @@
             <span style="font-size:11px;line-height:1.4;color:#6f6a5d;text-align:center">Blanco</span>
           </div>
         </div>
-        <p style="margin:0 0 10px;font-size:13px;line-height:1.6;color:#6f6a5d">Te agradecemos dejar estos colores libres para nosotros. Todo lo demás es bienvenido.</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">También te pedimos evitar el <strong style="font-weight:600">negro</strong> y el <strong style="font-weight:600">rojo</strong>.</p>
+        <p style="margin:0 0 10px;font-size:13px;line-height:1.6;color:#6f6a5d">Te agradecemos dejar estos colores libres para nosotros. También te pedimos evitar el <strong style="font-weight:600">negro</strong> y el <strong style="font-weight:600">rojo</strong>.</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Todo lo demás es bienvenido.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#f6e9e6;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#b99b96">Alojamiento</p>
         <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.15">Una noche<br />incluída</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Nosotros ponemos la cama, el almuerzo y la cena del sábado y el desayuno del Domingo. Solo trae lo que quepa en un boTso.</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Nosotros ponemos la cama, el almuerzo y la cena del sábado y el desayuno del Domingo. Solo trae lo que quepa en un botso.</p>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#fbf7f0;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#a8b795">Código de vestuario</p>
         <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1.1">Tropical Chic</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Queremos que disfrutes cómodamente; elige telas ligeras y colores claros. ¡La corbata se queda en casa!. <br> Tacón bajo/sin tacón: el jardín es de pasto y piedra.</p>
+        <p style="margin:0 0 16px;font-size:13px;line-height:1.6;color:#6f6a5d">Queremos que disfrutes cómodamente; elige telas ligeras y colores claros. ¡La corbata se queda en casa!. <br> Tacón bajo/sin tacón: el jardín es de pasto y piedra.</p>
+        <button type="button" id="dressCodeOpen" style="display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid #c7d5b6;background:transparent;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3f4a41;cursor:pointer;font-family:inherit">Ver referencia →</button>
       </div>
       <div style="flex:0 0 78%;scroll-snap-align:center;padding:24px;border-radius:18px;background:#eef2e6;color:#2f3a33;min-height:210px">
         <p style="margin:0 0 16px;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#8a9a80">Clima</p>
         <p style="margin:0 0 8px;font-family:'Cormorant Garamond',serif;font-size:44px;line-height:1">25 °C</p>
-        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Tibio de día, templado de noche. Trae vestido de baño: hay piscina.</p>
+        <p style="margin:0;font-size:13px;line-height:1.6;color:#6f6a5d">Tibio de día, templado de noche. Trae vestido de baño: hay piscina. No olvides el repelente y el bloqueador.</p>
       </div>
     </div>
     <div style="display:flex;justify-content:center;gap:6px;margin-top:4px">
@@ -821,7 +833,7 @@
         <circle cx="122" cy="58" r="2.6" fill="#5c6b53" stroke="none"></circle>
       </g>
     </svg>
-    <p data-reveal="" style="margin:0 0 14px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#9c9483">Última parada</p>
+    <p data-reveal="" style="margin:0 0 14px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#9c9483">Empezaremos un nuevo camino</p>
     <h2 data-reveal="" data-delay="80" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:40px;line-height:1.1">¿Nos acompañas?</h2>
     <p data-reveal="" data-delay="160" style="margin:0;max-width:290px;font-size:14px;line-height:1.7;color:#6f6a5d">Confírmanos antes del <strong style="font-weight:600">4 de septiembre</strong> para reservar tu lugar y tu habitación.</p>
     <p data-reveal="" data-delay="240" style="margin:34px 0 0;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#a8b795">Johan &amp; Mónica</p>
@@ -836,6 +848,6 @@
   </div>
 </div>
 </div>
-<script src="assets/js/main.js?v=6" defer></script>
+<script src="assets/js/main.js?v=8" defer></script>
 </body>
 </html>

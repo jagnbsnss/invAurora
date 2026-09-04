@@ -56,7 +56,9 @@
     { city: "Nueva York", passengers: "Cristian & Dani", message: "Cristian y Dani, mil gracias por todo el apoyo en todos estos años e inspirarnos desde el amor!" },
     { city: "Bangkok", passengers: "Jose, Der, Isa & Sebas", message: "Compis, Sebas e Isa!! Mil gracias por hacernos parte de su vida y permitirnos estar en el presente y ojalá el futuro. (Pdta: Aguante el verde!!)" },
     { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "Abuelitas!! Muchas gracias por cada enseñanza, apoyo y amor real!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
-    { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "Gracias por ayudarnos en este momento tan importante de nuestra vida, les auguramos muchos éxitos y crecimiento sin límite!!" }
+    { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "Gracias por ayudarnos en este momento tan importante de nuestra vida, les auguramos muchos éxitos y crecimiento sin límite!!" },
+    { city: "Paris", passengers: "Fabian Conejo", message: "Fabi O, muchisimas gracias por esa amistad que ha perdurado en el tiempo y la distacia. Gracias por todo el cariño y espero nos podamos ver en muchas otras latitudes para seguir disfrutando." },
+    { city: "Cracovia", passengers: "Evelyn", message: "Belli gracias por tu amistad incondicional, por siempre estar aún en la distancia y por apoyar cada momento de nuestro camino." },
   ];
   const CITY_STORAGE_KEY = "invitacionCiudad";
 

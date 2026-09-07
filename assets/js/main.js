@@ -58,7 +58,7 @@
     { city: "Lima", passengers: "Abuelitas María & Rosaura", message: "Abuelitas!! Muchas gracias por cada enseñanza, apoyo y amor real!", arrival: { day: 20, time: "3:00 pm", nights: 2 } },
     { city: "Punta Cana", passengers: "Equipo Lapislázuli", message: "Gracias por ayudarnos en este momento tan importante de nuestra vida, les auguramos muchos éxitos y crecimiento sin límite!!" },
     { city: "Paris", passengers: "Fabian Conejo", message: "Fabi O, muchisimas gracias por esa amistad que ha perdurado en el tiempo y la distacia. Gracias por todo el cariño y espero nos podamos ver en muchas otras latitudes para seguir disfrutando." },
-    { city: "Cracovia", passengers: "Evelyn", message: "Belli gracias por tu amistad incondicional, por siempre estar aún en la distancia y por apoyar cada momento de nuestro camino." },
+    { city: "Varsovia", passengers: "Evelyn", message: "Belli gracias por tu amistad incondicional, por siempre estar aún en la distancia y por apoyar cada momento de nuestro camino." },
   ];
   const CITY_STORAGE_KEY = "invitacionCiudad";
 
